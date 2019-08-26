@@ -1,8 +1,8 @@
 # Content Security Policy Reporting
 
-[![Latest Version](https://img.shields.io/github/release/Zae/ContentSecurityPolicyReporting.svg?style=flat-square)](https://github.com/Zae/strict-transport-security/releases)
+[![Latest Version](https://img.shields.io/github/release/Zae/ContentSecurityPolicyReporting.svg?style=flat-square)](https://github.com/Zae/ContentSecurityPolicyReporting/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Total Downloads](https://img.shields.io/packagist/dt/Zae/ContentSecurityPolicyReporting.svg?style=flat-square)](https://packagist.org/packages/Zae/strict-transport-security)
+[![Total Downloads](https://img.shields.io/packagist/dt/Zae/csp-reporting.svg?style=flat-square)](https://packagist.org/packages/Zae/csp-reporting)
 
 Catch the policy violations your users generate and store them somewhere
 
