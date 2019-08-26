@@ -1,0 +1,43 @@
+{
+    "name": "zae/csp-reporting",
+    "description": "CSP Reporting",
+    "type": "library",
+    "keywords": ["csp", "laravel", "zae", "psr7", "csp-report"],
+    "require": {
+        "php": ">= 7.2",
+        "ext-json": "*",
+        "illuminate/support": "^5.8",
+        "illuminate/cache": "^5.8",
+        "psr/log": "^1.1",
+        "symfony/psr-http-message-bridge": "^1.2",
+        "nyholm/psr7": "^1.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.3"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ezra Pool",
+            "email": "ezra@tsdme.nl"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Zae\\ContentSecurityPolicyReporting\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Zae\\ContentSecurityPolicyReporting\\ServiceProviders\\CspReportBootServiceProvider",
+                "Zae\\ContentSecurityPolicyReporting\\ServiceProviders\\CspReportDeferServiceProvider"
+            ]
+        }
+    },
+    "suggest": {
+        "zae/content-security-policy": "Add CSP headers to your responses",
+        "zae/strict-transport-security": "Add HSTS header to your responses"
+    }
+}
