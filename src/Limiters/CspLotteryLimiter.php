@@ -34,6 +34,10 @@ class CspLotteryLimiter implements CspLimiter
      */
     public function tooManyAttempts(): bool
     {
+        if ($this->chance === 0) {
+            return true;
+        }
+
         return random_int(PHP_INT_MIN, PHP_INT_MAX) % $this->chance === 0;
     }
 

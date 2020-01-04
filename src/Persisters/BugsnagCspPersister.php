@@ -3,10 +3,11 @@ declare(strict_types=1);
 
 namespace Zae\ContentSecurityPolicyReporting\Persisters;
 
-use Bugsnag;
+use Bugsnag\Client;
 use Bugsnag\Report;
 use Illuminate\Support\Arr;
-use Zae\ContentSecurityPolicyReporting\Contracts;
+use Psr\Log\LogLevel;
+use Zae\ContentSecurityPolicyReporting\Contracts\CspPersistable;
 use Zae\ContentSecurityPolicyReporting\Exceptions\CspViolationException;
 
 /**
@@ -14,21 +15,28 @@ use Zae\ContentSecurityPolicyReporting\Exceptions\CspViolationException;
  *
  * @package Zae\ContentSecurityPolicyReporting\Persisters
  */
-class BugsnagCspPersister implements Contracts\CspPersistable
+class BugsnagCspPersister implements CspPersistable
 {
     /**
      * @var string
      */
-    private $severity;
+    private $loglevel;
+
+    /**
+     * @var Client
+     */
+    private $client;
 
     /**
      * BugsnagCspPersister constructor.
      *
-     * @param string $severity
+     * @param Client $client
+     * @param string $loglevel
      */
-    public function __construct(string $severity = 'warning')
+    public function __construct(Client $client, string $loglevel = LogLevel::INFO)
     {
-        $this->severity = $severity;
+        $this->client = $client;
+        $this->loglevel = $loglevel;
     }
 
     /**
@@ -49,9 +57,9 @@ class BugsnagCspPersister implements Contracts\CspPersistable
             Arr::get($report, 'violatedDirective')
         );
 
-        Bugsnag::notifyException($cspViolationException, function (Report $bugsnagReport) use ($report) {
+        $this->client->notifyException($cspViolationException, function (Report $bugsnagReport) use ($report) {
             $bugsnagReport->addMetaData($report);
-            $bugsnagReport->setSeverity($this->severity);
+            $bugsnagReport->setSeverity($this->loglevel);
         });
     }
 }
