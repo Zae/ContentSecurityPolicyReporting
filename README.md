@@ -62,10 +62,8 @@ You can also provide your own classes as long as they implement the right interf
 
 ## Testing
 
-__ Not actually working yet tho, MR's are appreciated :D __
-
 ``` bash
-$ phpunit
+$ composer run test
 ```
 
 ## Contributing
