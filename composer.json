@@ -6,8 +6,6 @@
     "require": {
         "php": ">= 7.2",
         "ext-json": "*",
-        "illuminate/support": "^5.8",
-        "illuminate/cache": "^5.8",
         "psr/log": "^1.1",
         "symfony/psr-http-message-bridge": "^1.2",
         "nyholm/psr7": "^1.2",
@@ -17,9 +15,12 @@
         "phpunit/phpunit": "^8.3",
         "illuminate/http": "^5.8 | ^6.0",
         "illuminate/cache": "^5.8 | ^6.0",
+        "craftcms/cms": "^3.0",
         "bugsnag/bugsnag": "^3.0",
         "orchestra/testbench": "^4.4",
-        "mockery/mockery": "^1.3"
+        "mockery/mockery": "^1.3",
+        "vimeo/psalm": "^3.8",
+        "infection/infection": "^0.15.0"
     },
     "license": "MIT",
     "authors": [
@@ -46,6 +47,17 @@
                 "Zae\\ContentSecurityPolicyReporting\\ServiceProviders\\CspReportDeferServiceProvider"
             ]
         }
+    },
+    "scripts": {
+        "test": [
+            "@php -dpcov.enabled=1 -dpcov.directory=src -dpcov.exclude=~vendor~ vendor/bin/phpunit --coverage-text"
+        ],
+        "infection": [
+            "@php vendor/bin/infection -j4 --only-covered"
+        ],
+        "psalm": [
+            "@php vendor/bin/psalm --show-info=false"
+        ]
     },
     "suggest": {
         "zae/content-security-policy": "Add CSP headers to your responses",

@@ -3,3 +3,6 @@ docker
 docker-compose.yml
 .network
 composer.lock
+coverage
+logs
+.phpunit.result.cache
