@@ -8,7 +8,8 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zae\ContentSecurityPolicyReporting\Contracts\CspLimiter;
 use Zae\ContentSecurityPolicyReporting\Contracts\CspPersistable;
-use Illuminate\Support\Arr;
+use Zae\ContentSecurityPolicyReporting\Http\Traits\Persist;
+use function json_decode;
 
 /**
  * Class CspReportController
@@ -17,6 +18,8 @@ use Illuminate\Support\Arr;
  */
 class CspReportController
 {
+    use Persist;
+
     /**
      * @param ServerRequestInterface   $request
      * @param CspPersistable           $persistable
@@ -32,24 +35,12 @@ class CspReportController
         ResponseFactoryInterface $responseFactory
     ): ResponseInterface
     {
-        $cspReport = json_decode((string)$request->getBody(), true);
-        $cspArray = Arr::get($cspReport, 'csp-report', []);
+        $cspReport = json_decode(
+            (string)$request->getBody(),
+            true
+        );
 
-        if (!$limiter->tooManyAttempts()) {
-            $persistable->persist(Arr::only($cspArray, [
-                'blocked-uri',
-                'disposition',
-                'document-uri',
-                'effective-directive',
-                'original-policy',
-                'referrer',
-                'script-sample',
-                'status-code',
-                'violated-directive'
-            ]));
-
-            $limiter->hit();
-        }
+        $this->persist($persistable, $limiter, $cspReport);
 
         return $responseFactory->createResponse(202);
     }

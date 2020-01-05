@@ -41,7 +41,7 @@ class LogCspPersister implements CspPersistable
      */
     public function persist(array $report): void
     {
-        $stringReport = collect($report)->map(static function ($value, $key): string {
+        $stringReport = collect($report)->map(static function (string $value, string $key): string {
             return "{$key}: {$value}";
         })->join('; ');
 
