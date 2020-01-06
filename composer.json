@@ -50,7 +50,7 @@
     },
     "scripts": {
         "test": [
-            "@php -dpcov.enabled=1 -dpcov.directory=src -dpcov.exclude=~vendor~ vendor/bin/phpunit --coverage-text"
+            "@php -dpcov.enabled=1 -dpcov.directory=src -dpcov.exclude=~vendor~ vendor/bin/phpunit --coverage-text --coverage-clover=clover.xml"
         ],
         "infection": [
             "@php vendor/bin/infection -j4 --only-covered"
