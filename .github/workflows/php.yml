@@ -44,7 +44,7 @@ jobs:
         run: composer validate
 
       - name: Install dependencies
-        run: composer install --no-interaction --no-suggest ${{ matrix.prefer-lowest }}
+        run: composer update --no-interaction --no-suggest ${{ matrix.prefer-lowest }}
 
       - name: Run test suite
         run: composer run test
