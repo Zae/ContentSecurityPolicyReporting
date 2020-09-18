@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="3.8.1@8e54e3aa060fc490d86d0e2abbf62750516d40fd">
+<files psalm-version="3.16@d03e5ef057d6adc656c0ff7e166c50b73b4f48f3">
+  <file src="src/Craft/Module.php">
+    <UndefinedClass occurrences="1">
+      <code>Craft</code>
+    </UndefinedClass>
+  </file>
+  <file src="src/Http/Controllers/CraftController.php">
+    <UndefinedClass occurrences="1">
+      <code>Craft</code>
+    </UndefinedClass>
+  </file>
   <file src="src/ServiceProviders/CspReportDeferServiceProvider.php">
     <NoInterfaceProperties occurrences="4">
       <code>$this-&gt;app-&gt;config</code>

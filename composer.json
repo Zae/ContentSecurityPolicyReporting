@@ -55,9 +55,7 @@
         "infection": [
             "@php vendor/bin/infection -j4 --only-covered"
         ],
-        "psalm": [
-            "@php vendor/bin/psalm --show-info=false"
-        ]
+        "psalm": "@php vendor/bin/psalm --threads=8"
     },
     "suggest": {
         "zae/content-security-policy": "Add CSP headers to your responses",
