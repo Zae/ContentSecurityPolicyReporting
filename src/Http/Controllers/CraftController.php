@@ -21,6 +21,7 @@ class CraftController extends Controller
     use Persist;
 
     protected $allowAnonymous = ['index'];
+    public $enableCsrfValidation = false;
 
     /**
      * I don't know how Yii DI method injection works,
