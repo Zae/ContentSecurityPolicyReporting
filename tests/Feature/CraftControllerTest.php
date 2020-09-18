@@ -81,12 +81,12 @@ class CraftControllerTest extends TestCase
             ->setStatusCode(202)
             ->once();
 
-        $controller = new CraftController(2, new Module(1), []);
+        $module = new Module('csp-reporter');
+        $module->set(CspPersistable::class, $persisterMock);
+        $module->set(CspLimiter::class, $limiterMock);
 
-        $controller->actionReport(
-            $persisterMock,
-            $limiterMock
-        );
+        $controller = new CraftController(2, $module, []);
+        $controller->actionIndex();
     }
 
     /**
@@ -132,11 +132,11 @@ class CraftControllerTest extends TestCase
             ->setStatusCode(202)
             ->once();
 
-        $controller = new CraftController(2, new Module(1), []);
+        $module = new Module('csp-reporter');
+        $module->set(CspPersistable::class, $persisterMock);
+        $module->set(CspLimiter::class, $limiterMock);
 
-        $controller->actionReport(
-            $persisterMock,
-            $limiterMock
-        );
+        $controller = new CraftController(2, $module, []);
+        $controller->actionIndex();
     }
 }
