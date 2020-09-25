@@ -39,7 +39,9 @@ class Module extends \yii\base\Module
             UrlManager::class,
             UrlManager::EVENT_REGISTER_SITE_URL_RULES,
             function (RegisterUrlRulesEvent $event) {
-                $event->rules['csp-report'] = sprintf('%s/craft', $this->getUniqueId());
+                $event->rules = [
+                    'csp-report' =>  sprintf('%s/craft', $this->getUniqueId())
+                ] + $event->rules;
             }
         );
     }
